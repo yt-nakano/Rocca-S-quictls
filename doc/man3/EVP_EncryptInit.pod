@@ -463,7 +463,7 @@ Returns an B<EVP_CIPHER> structure when passed a cipher name, a cipher B<NID> or
 an B<ASN1_OBJECT> structure respectively.
 
 EVP_get_cipherbyname() will return NULL for algorithms such as "AES-128-SIV",
-"AES-128-CBC-CTS" and "CAMELLIA-128-CBC-CTS" which were previously only
+"AES-128-CBC-CTS", "CAMELLIA-128-CBC-CTS" and "Rocca-S" which were previously only
 accessible via low level interfaces.
 
 The EVP_get_cipherbyname() function is present for backwards compatibility with
@@ -1462,6 +1462,27 @@ This call is only valid when decrypting data.
 
 =back
 
+=head2 Rocca-S
+
+The following I<ctrl>s are supported for the Rocca-S AEAD algorithm.
+
+=over 4
+
+=item EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_GET_TAG, taglen, tag)
+
+Writes I<taglen> bytes of the tag value to the buffer indicated by I<tag>. This call can only be made when encrypting
+data and B<after> all data has been processed (e.g. after an EVP_EncryptFinal()
+call). the taglen must be 32.
+
+=item EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, taglen, tag)
+
+Sets the expected tag to I<taglen>
+bytes from I<tag>. This call is only legal when decrypting data and must be
+made B<before> any data is processed (e.g. before any EVP_DecryptUpdate()
+calls). the taglen must be 32.
+
+=back
+
 =head1 NOTES
 
 Where possible the B<EVP> interface to symmetric ciphers should be used in
@@ -1711,6 +1732,7 @@ L<EVP_rc4(3)>,
 L<EVP_rc5_32_12_16_cbc(3)>,
 L<EVP_seed_cbc(3)>,
 L<EVP_sm4_cbc(3)>,
+L<EVP_rocca_s(3)>
 
 =head1 HISTORY
 

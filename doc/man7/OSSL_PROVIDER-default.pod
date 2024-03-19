@@ -95,6 +95,8 @@ The OpenSSL default provider supports these operations and algorithms:
 
 =item ChaCha20-Poly1305, see L<EVP_CIPHER-CHACHA(7)>
 
+=item Rocca-S, see L<EVP_CIPHER-ROCCA(7)>
+
 =item NULL, see L<EVP_CIPHER-NULL(7)>
 
 =back

@@ -1,5 +1,6 @@
 /*
  * Copyright 1995-2023 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -33,7 +34,7 @@
 
 # define EVP_MAX_MD_SIZE                 64/* longest known is SHA512 */
 # define EVP_MAX_KEY_LENGTH              64
-# define EVP_MAX_IV_LENGTH               16
+# define EVP_MAX_IV_LENGTH               32
 # define EVP_MAX_BLOCK_LENGTH            32
 
 # define PKCS5_SALT_LEN                  8
@@ -476,6 +477,9 @@ typedef struct {
 
 /* Length of tag for TLS */
 # define EVP_CHACHAPOLY_TLS_TAG_LEN                      16
+
+/* Length of tag for TLS */
+# define EVP_ROCCAS_TLS_TAG_LEN                          32
 
 typedef struct evp_cipher_info_st {
     const EVP_CIPHER *cipher;
@@ -2168,6 +2172,10 @@ int EVP_PKEY_get_group_name(const EVP_PKEY *pkey, char *name, size_t name_sz,
 OSSL_LIB_CTX *EVP_PKEY_CTX_get0_libctx(EVP_PKEY_CTX *ctx);
 const char *EVP_PKEY_CTX_get0_propq(const EVP_PKEY_CTX *ctx);
 const OSSL_PROVIDER *EVP_PKEY_CTX_get0_provider(const EVP_PKEY_CTX *ctx);
+
+# ifndef OPENSSL_NO_ROCCA
+const EVP_CIPHER *EVP_rocca_s(void);
+# endif
 
 # ifdef  __cplusplus
 }

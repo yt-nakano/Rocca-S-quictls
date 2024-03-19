@@ -22,6 +22,10 @@ OpenSSL Releases
 OpenSSL 3.1
 -----------
 
+### Changes between 3.1.5+quic and 3.1.5+quic+rocca [19 Mar 2024]
+ * Experimentally add new TLS 1.3 ciphersuites with Rocca-S enabled "TLS_ROCCA_S_SHA512".
+   *KDDI CORPORATION*
+
 ### Changes between 3.1.5 and 3.1.5+quic [30 Jan 2024]
 
  * Add QUIC API support from BoringSSL.

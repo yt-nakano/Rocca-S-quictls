@@ -2,6 +2,7 @@
  * Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
  * Copyright 2005 Nokia. All rights reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -112,6 +113,22 @@ static SSL_CIPHER tls13_ciphers[] = {
         SSL_HANDSHAKE_MAC_SHA256,
         128,
         128,
+    },
+    {
+        1,
+        TLS1_3_RFC_ROCCA_S_SHA512,
+        TLS1_3_RFC_ROCCA_S_SHA512,
+        TLS1_3_CK_ROCCA_S_SHA512,
+        SSL_kANY,
+        SSL_aANY,
+        SSL_ROCCAS,
+        SSL_AEAD,
+        TLS1_3_VERSION, TLS1_3_VERSION,
+        0, 0,
+        SSL_HIGH,
+        SSL_MD_SHA512_IDX,
+        256,
+        256,
     }
 };
 

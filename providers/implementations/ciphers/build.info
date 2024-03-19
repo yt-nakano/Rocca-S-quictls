@@ -25,6 +25,7 @@ $SM4_GOAL=../../libdefault.a
 $CHACHA_GOAL=../../libdefault.a
 $CHACHAPOLY_GOAL=../../libdefault.a
 $SIV_GOAL=../../libdefault.a
+$ROCCA_GOAL=../../libdefault.a
 
 # This source is common building blocks for all ciphers in all our providers.
 SOURCE[$COMMON_GOAL]=\
@@ -141,4 +142,12 @@ IF[{- !$disabled{chacha} -}]
   SOURCE[$CHACHAPOLY_GOAL]=\
       cipher_chacha20_poly1305.c cipher_chacha20_poly1305_hw.c
  ENDIF
+ENDIF
+
+IF[{- !$disabled{rocca} -}]
+  IF[{- !$disabled{asm} -}]
+      DEFINE[$ROCCA_GOAL]=ROCCA_ASM
+  ENDIF
+  SOURCE[$ROCCA_GOAL]=\
+      cipher_rocca_s.c cipher_rocca_s_hw.c
 ENDIF

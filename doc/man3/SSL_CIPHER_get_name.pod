@@ -103,7 +103,7 @@ applicable versions. Examples (not comprehensive):
  NID_sha384
 
 SSL_CIPHER_is_aead() returns 1 if the cipher B<c> is AEAD (e.g. GCM or
-ChaCha20/Poly1305), and 0 if it is not AEAD.
+ChaCha20/Poly1305 or Rocca-S), and 0 if it is not AEAD.
 
 SSL_CIPHER_find() returns a B<SSL_CIPHER> structure which has the cipher ID stored
 in B<ptr>. The B<ptr> parameter is a two element array of B<char>, which stores the

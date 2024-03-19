@@ -1,5 +1,6 @@
 /*
  * Copyright 2016-2023 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -7700,6 +7701,7 @@ static struct {
         "AES256-SHA:AES128-SHA256",
         NULL,
         "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:"
+        "TLS_ROCCA_S_SHA512:"
         "TLS_AES_128_GCM_SHA256:AES256-SHA",
         "TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:AES256-SHA"
     },

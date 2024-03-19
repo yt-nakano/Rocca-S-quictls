@@ -69,3 +69,5 @@ INCLUDE[e_aria.o]=.. ../modes
 INCLUDE[e_sm4.o]=.. ../modes
 INCLUDE[e_des.o]=..
 INCLUDE[e_des3.o]=..
+
+SOURCE[../../libcrypto]=e_rocca_s.c

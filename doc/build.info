@@ -1447,6 +1447,10 @@ DEPEND[html/man3/EVP_whirlpool.html]=man3/EVP_whirlpool.pod
 GENERATE[html/man3/EVP_whirlpool.html]=man3/EVP_whirlpool.pod
 DEPEND[man/man3/EVP_whirlpool.3]=man3/EVP_whirlpool.pod
 GENERATE[man/man3/EVP_whirlpool.3]=man3/EVP_whirlpool.pod
+DEPEND[html/man3/EVP_rocca_s.html]=man3/EVP_rocca_s.pod
+GENERATE[html/man3/EVP_rocca_s.html]=man3/EVP_rocca_s.pod
+DEPEND[man/man3/EVP_rocca_s.3]=man3/EVP_rocca_s.pod
+GENERATE[man/man3/EVP_rocca_s.3]=man3/EVP_rocca_s.pod
 DEPEND[html/man3/HMAC.html]=man3/HMAC.pod
 GENERATE[html/man3/HMAC.html]=man3/HMAC.pod
 DEPEND[man/man3/HMAC.3]=man3/HMAC.pod
@@ -3149,6 +3153,7 @@ html/man3/EVP_sha3_224.html \
 html/man3/EVP_sm3.html \
 html/man3/EVP_sm4_cbc.html \
 html/man3/EVP_whirlpool.html \
+html/man3/EVP_rocca_s.html \
 html/man3/HMAC.html \
 html/man3/MD5.html \
 html/man3/MDC2_Init.html \
@@ -3758,6 +3763,7 @@ man/man3/EVP_sha3_224.3 \
 man/man3/EVP_sm3.3 \
 man/man3/EVP_sm4_cbc.3 \
 man/man3/EVP_whirlpool.3 \
+man/man3/EVP_rocca_s.3 \
 man/man3/HMAC.3 \
 man/man3/MD5.3 \
 man/man3/MDC2_Init.3 \
@@ -4197,6 +4203,10 @@ DEPEND[html/man7/EVP_CIPHER-RC5.html]=man7/EVP_CIPHER-RC5.pod
 GENERATE[html/man7/EVP_CIPHER-RC5.html]=man7/EVP_CIPHER-RC5.pod
 DEPEND[man/man7/EVP_CIPHER-RC5.7]=man7/EVP_CIPHER-RC5.pod
 GENERATE[man/man7/EVP_CIPHER-RC5.7]=man7/EVP_CIPHER-RC5.pod
+DEPEND[html/man7/EVP_CIPHER-ROCCA.html]=man7/EVP_CIPHER-ROCCA.pod
+GENERATE[html/man7/EVP_CIPHER-ROCCA.html]=man7/EVP_CIPHER-ROCCA.pod
+DEPEND[man/man7/EVP_CIPHER-ROCCA.7]=man7/EVP_CIPHER-ROCCA.pod
+GENERATE[man/man7/EVP_CIPHER-ROCCA.7]=man7/EVP_CIPHER-ROCCA.pod
 DEPEND[html/man7/EVP_CIPHER-SEED.html]=man7/EVP_CIPHER-SEED.pod
 GENERATE[html/man7/EVP_CIPHER-SEED.html]=man7/EVP_CIPHER-SEED.pod
 DEPEND[man/man7/EVP_CIPHER-SEED.7]=man7/EVP_CIPHER-SEED.pod
@@ -4667,6 +4677,7 @@ html/man7/EVP_CIPHER-NULL.html \
 html/man7/EVP_CIPHER-RC2.html \
 html/man7/EVP_CIPHER-RC4.html \
 html/man7/EVP_CIPHER-RC5.html \
+html/man7/EVP_CIPHER-ROCCA.html \
 html/man7/EVP_CIPHER-SEED.html \
 html/man7/EVP_CIPHER-SM4.html \
 html/man7/EVP_KDF-HKDF.html \
@@ -4793,6 +4804,7 @@ man/man7/EVP_CIPHER-NULL.7 \
 man/man7/EVP_CIPHER-RC2.7 \
 man/man7/EVP_CIPHER-RC4.7 \
 man/man7/EVP_CIPHER-RC5.7 \
+man/man7/EVP_CIPHER-ROCCA.7 \
 man/man7/EVP_CIPHER-SEED.7 \
 man/man7/EVP_CIPHER-SM4.7 \
 man/man7/EVP_KDF-HKDF.7 \

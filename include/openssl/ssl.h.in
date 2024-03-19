@@ -4,6 +4,7 @@
  * Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
  * Copyright 2005 Nokia. All rights reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -142,6 +143,7 @@ extern "C" {
 # define SSL_TXT_CAMELLIA256     "CAMELLIA256"
 # define SSL_TXT_CAMELLIA        "CAMELLIA"
 # define SSL_TXT_CHACHA20        "CHACHA20"
+# define SSL_TXT_ROCCA           "ROCCA"
 # define SSL_TXT_GOST            "GOST89"
 # define SSL_TXT_ARIA            "ARIA"
 # define SSL_TXT_ARIA_GCM        "ARIAGCM"
@@ -200,6 +202,7 @@ extern "C" {
  */
 #  define TLS_DEFAULT_CIPHERSUITES "TLS_AES_256_GCM_SHA384:" \
                                    "TLS_CHACHA20_POLY1305_SHA256:" \
+                                   "TLS_ROCCA_S_SHA512:" \
                                    "TLS_AES_128_GCM_SHA256"
 # endif
 /*

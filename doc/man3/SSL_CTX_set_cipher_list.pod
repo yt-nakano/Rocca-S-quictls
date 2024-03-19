@@ -50,11 +50,13 @@ ciphersuite names in order of preference. Valid TLSv1.3 ciphersuite names are:
 
 =item TLS_AES_128_CCM_8_SHA256
 
+=item TLS_ROCCA_S_SHA512
+
 =back
 
 An empty list is permissible. The default value for the this setting is:
 
-"TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256"
+"TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ROCCA_S_SHA512"
 
 SSL_set_ciphersuites() is the same as SSL_CTX_set_ciphersuites() except it
 configures the ciphersuites for B<ssl>.

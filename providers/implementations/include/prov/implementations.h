@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2022 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -235,6 +236,9 @@ extern const OSSL_DISPATCH ossl_chacha20_functions[];
 extern const OSSL_DISPATCH ossl_chacha20_ossl_poly1305_functions[];
 # endif /* OPENSSL_NO_POLY1305 */
 #endif /* OPENSSL_NO_CHACHA */
+#ifndef OPENSSL_NO_ROCCA
+extern const OSSL_DISPATCH ossl_rocca_s_functions[];
+#endif /* OPENSSL_NO_ROCCA */
 
 
 #ifndef OPENSSL_NO_SIV

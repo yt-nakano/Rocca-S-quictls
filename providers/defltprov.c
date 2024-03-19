@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2022 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -303,6 +304,9 @@ static const OSSL_ALGORITHM_CAPABLE deflt_ciphers[] = {
     ALG(PROV_NAMES_ChaCha20_Poly1305, ossl_chacha20_ossl_poly1305_functions),
 # endif /* OPENSSL_NO_POLY1305 */
 #endif /* OPENSSL_NO_CHACHA */
+#ifndef OPENSSL_NO_ROCCA
+    ALG(PROV_NAMES_ROCCA_S, ossl_rocca_s_functions),
+#endif /* OPENSSL_NO_ROCCA */
     { { NULL, NULL, NULL }, NULL }
 };
 static OSSL_ALGORITHM exported_ciphers[OSSL_NELEM(deflt_ciphers)];

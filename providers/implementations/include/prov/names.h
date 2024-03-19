@@ -1,5 +1,6 @@
 /*
  * Copyright 2021-2022 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -202,6 +203,7 @@
 #define PROV_NAMES_DES_CFB "DES-CFB:1.3.14.3.2.9"
 #define PROV_NAMES_DES_CFB1 "DES-CFB1"
 #define PROV_NAMES_DES_CFB8 "DES-CFB8"
+#define PROV_NAMES_ROCCA_S "ROCCA-S"
 
 /*-
  * Digests

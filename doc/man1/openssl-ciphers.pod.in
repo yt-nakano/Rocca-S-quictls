@@ -99,7 +99,7 @@ TLSv1.2 and below ciphersuites that have been configured. The format for this
 list is a simple colon (":") separated list of TLSv1.3 ciphersuite names. By
 default this value is:
 
- TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256
+ TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ROCCA_S_SHA512
 
 =item B<cipherlist>
 
@@ -730,6 +730,7 @@ Note: the CBC modes mentioned in this RFC are not supported.
  TLS_CHACHA20_POLY1305_SHA256               TLS_CHACHA20_POLY1305_SHA256
  TLS_AES_128_CCM_SHA256                     TLS_AES_128_CCM_SHA256
  TLS_AES_128_CCM_8_SHA256                   TLS_AES_128_CCM_8_SHA256
+ TLS_ROCCA_S_SHA512                         TLS_ROCCA_S_SHA512
 
 =head2 Older names used by OpenSSL
 

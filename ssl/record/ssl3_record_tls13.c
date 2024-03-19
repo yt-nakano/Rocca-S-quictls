@@ -1,5 +1,6 @@
 /*
  * Copyright 2016-2022 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -106,6 +107,8 @@ int tls13_enc(SSL *s, SSL3_RECORD *recs, size_t n_recs, int sending,
         taglen = EVP_GCM_TLS_TAG_LEN;
     } else if (alg_enc & SSL_CHACHA20) {
         taglen = EVP_CHACHAPOLY_TLS_TAG_LEN;
+    } else if (alg_enc & SSL_ROCCAS) {
+        taglen = EVP_ROCCAS_TLS_TAG_LEN;
     } else {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return 0;

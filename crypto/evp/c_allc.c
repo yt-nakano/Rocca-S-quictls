@@ -1,5 +1,6 @@
 /*
  * Copyright 1995-2020 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -262,4 +263,9 @@ void openssl_add_all_ciphers_int(void)
     EVP_add_cipher(EVP_chacha20_poly1305());
 # endif
 #endif
+
+#ifndef OPENSSL_NO_ROCCA
+    EVP_add_cipher(EVP_rocca_s());
+#endif
+
 }

@@ -2,6 +2,7 @@
  * Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
  * Copyright 2005 Nokia. All rights reserved.
+ * Copyright (c) 2024 KDDI CORPORATION. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -238,12 +239,14 @@
 # define SSL_ARIA256GCM          0x00200000U
 # define SSL_MAGMA               0x00400000U
 # define SSL_KUZNYECHIK          0x00800000U
+# define SSL_ROCCAS              0x01000000U
 
 # define SSL_AESGCM              (SSL_AES128GCM | SSL_AES256GCM)
 # define SSL_AESCCM              (SSL_AES128CCM | SSL_AES256CCM | SSL_AES128CCM8 | SSL_AES256CCM8)
 # define SSL_AES                 (SSL_AES128|SSL_AES256|SSL_AESGCM|SSL_AESCCM)
 # define SSL_CAMELLIA            (SSL_CAMELLIA128|SSL_CAMELLIA256)
 # define SSL_CHACHA20            (SSL_CHACHA20POLY1305)
+# define SSL_ROCCA               (SSL_ROCCAS)
 # define SSL_ARIAGCM             (SSL_ARIA128GCM | SSL_ARIA256GCM)
 # define SSL_ARIA                (SSL_ARIAGCM)
 # define SSL_CBC                 (SSL_DES | SSL_3DES | SSL_RC2 | SSL_IDEA \
@@ -438,7 +441,8 @@
 # define SSL_ENC_ARIA256GCM_IDX  21
 # define SSL_ENC_MAGMA_IDX       22
 # define SSL_ENC_KUZNYECHIK_IDX  23
-# define SSL_ENC_NUM_IDX         24
+# define SSL_ENC_ROCCAS_IDX      24
+# define SSL_ENC_NUM_IDX         25
 
 /*-
  * SSL_kRSA <- RSA_ENC
