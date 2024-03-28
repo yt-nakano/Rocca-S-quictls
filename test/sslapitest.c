@@ -3363,6 +3363,7 @@ static unsigned int psk_server_cb(SSL *ssl, const char *identity,
 #define TLS13_CHACHA20_POLY1305_SHA256_BYTES ((const unsigned char *)"\x13\x03")
 #define TLS13_AES_128_CCM_SHA256_BYTES ((const unsigned char *)"\x13\x04")
 #define TLS13_AES_128_CCM_8_SHA256_BYTES ((const unsigned char *)"\x13\05")
+#define TLS13_ROCCA_S_SHA512_BYTES ((const unsigned char *)"\x13\x06")
 
 
 static SSL_SESSION *create_a_psk(SSL *ssl, size_t mdsize)
@@ -3373,11 +3374,14 @@ static SSL_SESSION *create_a_psk(SSL *ssl, size_t mdsize)
         0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15,
         0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20,
         0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b,
-        0x2c, 0x2d, 0x2e, 0x2f /* SHA384_DIGEST_LENGTH bytes */
+        0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,
+        0x37, 0x38, 0x39, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f /* SHA512_DIGEST_LENGTH bytes */
     };
     SSL_SESSION *sess = NULL;
 
-    if (mdsize == SHA384_DIGEST_LENGTH) {
+    if (mdsize == SHA512_DIGEST_LENGTH) {
+        cipher = SSL_CIPHER_find(ssl, TLS13_ROCCA_S_SHA512_BYTES);
+    } else if (mdsize == SHA384_DIGEST_LENGTH) {
         cipher = SSL_CIPHER_find(ssl, TLS13_AES_256_GCM_SHA384_BYTES);
     } else if (mdsize == SHA256_DIGEST_LENGTH) {
         /*
@@ -3864,8 +3868,9 @@ static const char *ciphersuites[] = {
     "TLS_AES_256_GCM_SHA384",
     "TLS_AES_128_CCM_SHA256",
 #if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-    "TLS_CHACHA20_POLY1305_SHA256"
+    "TLS_CHACHA20_POLY1305_SHA256",
 #endif
+    "TLS_ROCCA_S_SHA512"
 };
 
 /*
@@ -3905,8 +3910,9 @@ static int early_data_skip_helper(int testtype, int cipher, int idx)
 
     if (!TEST_true(setupearly_data_test(&cctx, &sctx, &clientssl,
                                         &serverssl, &sess, idx,
-                                        cipher == 2 ? SHA384_DIGEST_LENGTH
-                                                    : SHA256_DIGEST_LENGTH)))
+                                           cipher == 5 ? SHA512_DIGEST_LENGTH
+                                        : (cipher == 2 ? SHA384_DIGEST_LENGTH
+                                        :                SHA256_DIGEST_LENGTH) )))
         goto end;
 
     if (testtype == 1 || testtype == 2) {
@@ -4363,6 +4369,7 @@ static int test_early_data_psk(int idx)
  * idx == 2: Test with TLS1_3_RFC_CHACHA20_POLY1305_SHA256,
  * idx == 3: Test with TLS1_3_RFC_AES_128_CCM_SHA256
  * idx == 4: Test with TLS1_3_RFC_AES_128_CCM_8_SHA256
+ * idx == 5: Test with TLS1_3_RFC_ROCCA_S_SHA512
  */
 static int test_early_data_psk_with_all_ciphers(int idx)
 {
@@ -4382,7 +4389,8 @@ static int test_early_data_psk_with_all_ciphers(int idx)
         NULL,
 # endif
         TLS1_3_RFC_AES_128_CCM_SHA256,
-        TLS1_3_RFC_AES_128_CCM_8_SHA256
+        TLS1_3_RFC_AES_128_CCM_8_SHA256,
+        TLS1_3_RFC_ROCCA_S_SHA512
     };
     const unsigned char *cipher_bytes[] = {
         TLS13_AES_128_GCM_SHA256_BYTES,
@@ -4393,7 +4401,8 @@ static int test_early_data_psk_with_all_ciphers(int idx)
         NULL,
 # endif
         TLS13_AES_128_CCM_SHA256_BYTES,
-        TLS13_AES_128_CCM_8_SHA256_BYTES
+        TLS13_AES_128_CCM_8_SHA256_BYTES,
+        TLS13_ROCCA_S_SHA512_BYTES
     };
 
     if (cipher_str[idx] == NULL)
@@ -5234,6 +5243,11 @@ static int test_tls13_ciphersuite(int idx)
         { TLS1_3_RFC_CHACHA20_POLY1305_SHA256, 0 },
         { TLS1_3_RFC_AES_256_GCM_SHA384
           ":" TLS1_3_RFC_CHACHA20_POLY1305_SHA256, 0 },
+# endif
+# if !defined(OPENSSL_NO_ROCCA)
+        { TLS1_3_RFC_ROCCA_S_SHA512, 0 },
+        { TLS1_3_RFC_AES_256_GCM_SHA384
+          ":" TLS1_3_RFC_ROCCA_S_SHA512, 0 },
 # endif
         { TLS1_3_RFC_AES_128_CCM_8_SHA256 ":" TLS1_3_RFC_AES_128_CCM_SHA256, 1 }
     };
@@ -7700,8 +7714,7 @@ static struct {
         NULL,
         "AES256-SHA:AES128-SHA256",
         NULL,
-        "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:"
-        "TLS_ROCCA_S_SHA512:"
+        "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_ROCCA_S_SHA512:"
         "TLS_AES_128_GCM_SHA256:AES256-SHA",
         "TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:AES256-SHA"
     },

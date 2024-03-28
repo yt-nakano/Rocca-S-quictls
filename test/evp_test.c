@@ -1001,7 +1001,7 @@ static int cipher_test_enc(EVP_TEST *t, int enc,
                             tmp + out_misalign, tmplen + tmpflen))
         goto err;
     if (enc && expected->aead && !expected->tls_aad) {
-        unsigned char rtag[16];
+        unsigned char rtag[32];
 
         if (!TEST_size_t_le(expected->tag_len, sizeof(rtag))) {
             t->err = "TAG_LENGTH_INTERNAL_ERROR";
@@ -4164,6 +4164,10 @@ static int is_cipher_disabled(const char *name)
 #endif
 #ifdef OPENSSL_NO_CHACHA
     if (STR_STARTS_WITH(name, "CHACHA"))
+        return 1;
+#endif
+#ifdef OPENSSL_NO_ROCCA
+    if (HAS_CASE_PREFIX(name, "ROCCA"))
         return 1;
 #endif
 #ifdef OPENSSL_NO_POLY1305

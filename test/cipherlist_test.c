@@ -68,6 +68,7 @@ static const uint32_t default_ciphers_in_order[] = {
 # if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
     TLS1_3_CK_CHACHA20_POLY1305_SHA256,
 # endif
+    TLS1_3_CK_ROCCA_S_SHA512,
     TLS1_3_CK_AES_128_GCM_SHA256,
 #endif
 #ifndef OPENSSL_NO_TLS1_2

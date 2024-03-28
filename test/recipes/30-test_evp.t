@@ -96,6 +96,7 @@ my @defltfiles = qw(
                      evpciph_rc4.txt
                      evpciph_rc4_stitched.txt
                      evpciph_rc5.txt
+                     evpciph_rocca.txt
                      evpciph_seed.txt
                      evpciph_sm4.txt
                      evpencod.txt
